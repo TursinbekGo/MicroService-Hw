@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+package dict;
+
+option go_package = "github.com/asadbek/app/dict";
+
+service Translate {
+
+    rpc Dictionary(DictionaryRequest) returns (DictionaryResponse) {}
+    rpc Add(AddRequest) returns (AddResponse) {}
+    rpc GetCurrency(CurrencyRequest) returns (Result){}
+    rpc Converter(MoneyConverterRequest) returns (MoneyConverterResponse){}
+    rpc Square(NumberRequest) returns (NumberResponse){}
+    rpc MaxNum(MaxRequest) returns (MaxResponse){}
+
+
+
+}
+
+message DictionaryRequest {
+    string key = 1;
+}
+
+message DictionaryResponse {
+    string value = 1;
+}
+
+
+message AddRequest {
+    int64 key = 1;
+    int64 key1 = 2;
+}
+
+message AddResponse {
+    int64 result = 1;
+}
+
+message CurrencyRequest {
+    string Ccy = 1;
+}
+message CurrencyResponse {
+    int64 id = 1;
+    string Code = 2;
+    string Ccy = 3;
+    string CcyNm_RU = 4;
+    string CcyNm_UZ = 5;
+    string cyNm_UZC = 6;
+    string CcyNm_EN = 7;
+    string Nominal = 8;
+    string Rate = 9;
+    string Diff = 10;
+    string Date = 11;
+}
+
+message Result {
+    repeated CurrencyResponse Infos = 1;
+}
+
+
+message MoneyConverterRequest {
+    string Money = 1;
+    string Ccy = 2;
+}
+
+message MoneyConverterResponse {
+    string Result = 1;
+    string Rate = 2;
+    string Ccy = 3;
+}
+
+
+message NumberRequest {
+    int64 number = 1;
+    int64 degree = 2;
+}
+
+message NumberResponse {
+    int64 Result = 1;
+  
+}
+
+message MaxRequest {
+    repeated int64 nums = 1;
+}
+
+message MaxResponse {
+    int64 Result = 1;
+}
